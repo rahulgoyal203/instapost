@@ -1,0 +1,472 @@
+/* ========================================
+   InstaPost - Mobile-First CSS
+   ======================================== */
+
+:root {
+  --bg-primary: #050505;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --text-muted: #555555;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.3);
+  --border-color: #222222;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-fast: 100ms ease;
+  --transition-normal: 200ms ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ========================================
+   App Container & Transitions
+   ======================================== */
+
+.app {
+  min-height: 100dvh;
+  opacity: 1;
+  transition: opacity var(--transition-fast);
+}
+
+.app.transitioning {
+  opacity: 0.5;
+}
+
+/* ========================================
+   Template Picker (Home Screen)
+   ======================================== */
+
+.template-picker {
+  min-height: 100dvh;
+  padding: 24px 16px 32px;
+}
+
+.picker-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.template-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.template-card:active {
+  transform: scale(0.97);
+}
+
+.template-card:hover {
+  border-color: var(--text-muted);
+}
+
+.template-preview {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.template-preview canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.template-info {
+  padding: 12px;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+}
+
+.template-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Editor Screen
+   ======================================== */
+
+.editor {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  margin-left: -8px;
+  transition: background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-button:active {
+  background: var(--bg-tertiary);
+}
+
+.editor-title {
+  flex: 1;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  margin-right: 36px;
+}
+
+.header-spacer {
+  width: 36px;
+}
+
+.editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* ========================================
+   Canvas Container
+   ======================================== */
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-canvas {
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--border-color);
+}
+
+/* ========================================
+   Controls Section
+   ======================================== */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+
+/* ========================================
+   Color Palette
+   ======================================== */
+
+.color-palette {
+  display: flex;
+  justify-content: center;
+}
+
+.palette-swatches {
+  display: flex;
+  gap: 12px;
+}
+
+.palette-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  padding: 4px;
+}
+
+.palette-swatch:active {
+  transform: scale(0.92);
+}
+
+.palette-swatch.selected {
+  border-color: var(--text-primary);
+}
+
+.swatch-bg {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+}
+
+.swatch-text {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  bottom: 6px;
+  right: 6px;
+  border: 2px solid var(--bg-tertiary);
+}
+
+/* ========================================
+   Text Input
+   ======================================== */
+
+.text-input-wrapper {
+  position: relative;
+}
+
+.text-input {
+  width: 100%;
+  min-height: 100px;
+  padding: 16px;
+  padding-bottom: 32px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  resize: none;
+  font-family: inherit;
+  transition: border-color var(--transition-fast);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.text-input::placeholder {
+  color: var(--text-muted);
+}
+
+.char-count {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.char-count.warning {
+  color: #f59e0b;
+}
+
+/* ========================================
+   Download Button
+   ======================================== */
+
+.download-button {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 
+    background var(--transition-fast),
+    transform var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.download-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.download-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.download-button:disabled {
+  cursor: not-allowed;
+}
+
+.download-button.exporting {
+  background: #22c55e;
+}
+
+.download-button svg {
+  flex-shrink: 0;
+}
+
+.check-icon {
+  animation: checkPop 300ms ease;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   Desktop / Tablet Adjustments
+   ======================================== */
+
+@media (min-width: 768px) {
+  .template-picker {
+    padding: 48px 24px;
+  }
+
+  .picker-header {
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-size: 36px;
+  }
+
+  .tagline {
+    font-size: 17px;
+  }
+
+  .template-grid {
+    max-width: 600px;
+    gap: 16px;
+  }
+
+  .template-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .template-card:active {
+    transform: scale(0.99);
+  }
+
+  .editor-main {
+    flex-direction: row;
+    padding: 32px;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .canvas-wrapper {
+    flex: 1;
+    max-width: 450px;
+  }
+
+  .controls {
+    flex: 1;
+    max-width: 350px;
+    margin-top: 0;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   Safe Area (Notch) Support
+   ======================================== */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .editor-main {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .template-picker {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom));
+  }
+}
+
