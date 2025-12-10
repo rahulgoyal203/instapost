@@ -9,7 +9,8 @@ export default defineConfig({
   },
   preview: {
     host: true,
-    port: process.env.PORT || 4173
+    port: process.env.PORT || 4173,
+    allowedHosts: ['instapost-production.up.railway.app', '.railway.app']
   }
 })
 
